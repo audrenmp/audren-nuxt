@@ -1,5 +1,6 @@
 <script>
 import SimplexNoise from 'simplex-noise'
+import TweenMax from 'gsap'
 
 export default {
   inject: ['provider'],
@@ -15,8 +16,13 @@ export default {
       simplex: {},
       ctx: {},
       canvasWidth: 0,
-      canvasHeight: 0,
+      canvasHeight: 0
     }
+  },
+  watch: {
+    ctx: function (val) {
+
+    },
   },
   updated () {
     if (this.provider.context) {
@@ -32,10 +38,6 @@ export default {
       this.canvasWidth = this.ctx.canvas.width;
       this.canvasHeight = this.ctx.canvas.height;
 
-      this.radius = 200;
-      console.log(window.innerWidth)
-      console.log(this.canvasWidth)
-
       this.ctx.scale(this.scale, this.scale);
       this.ctx.lineWidth = 2 * this.scale;
       this.ctx.strokeStyle = this.$props.color;
@@ -44,17 +46,18 @@ export default {
     },
     draw: function () {
       if (this.provider.context) {
-        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight); 
+        // console.log(this.radius)
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.speed += 0.005;
+        this.radius = 200;
 
-        this.ctx.moveTo(0, 0); // centrer au centre
+        this.ctx.moveTo(window.innerWidth / 2, window.innerHeight / 2); // centrer au centre
         this.ctx.beginPath();
-        let value2d = 0;
 
         for (var i = 0; i < (Math.PI * 2 + 5); i += 0.01) {
-          let value2d = this.simplex.noise2D(Math.cos(i) + this.speed, Math.sin(i) + this.speed ) * 20;
-          let x = Math.cos(i) * (this.radius + value2d) + window.innerWidth/2
-          let y = Math.sin(i) * (this.radius + value2d) + window.innerHeight/2
+          let value2d = this.simplex.noise2D(Math.cos(i) + this.speed, Math.sin(i) + this.speed) * 20;
+          let x = Math.cos(i) * (this.radius + value2d) + window.innerWidth / 2
+          let y = Math.sin(i) * (this.radius + value2d) + window.innerHeight / 2
           this.ctx.lineTo(x, y);
         }
         // this.ctx.stroke();
@@ -64,7 +67,6 @@ export default {
     }
   },
   render: function () {
-    // console.log(this.points)
     // Since the parent canvas has to mount first, it's *possible* that the context may not be
     // injected by the time this render function runs the first time.
     if (!this.provider.context) return '';
