@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas ref="canvas"/>
+    <canvas ref="canvas" />
     <slot></slot>
   </div>
 </template>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       provider: {
         context: null
@@ -21,23 +21,31 @@ export default {
     }
   },
   mounted () {
-    // We can't access the rendering context until the canvas is mounted to the DOM.
-    // Once we have it, provide it to all child components.
     this.provider.context = this.$refs['canvas'].getContext('2d')
+    let scale = window.devicePixelRatio;
 
-    // Resize the canvas to fit its parent's width.
-    // Normally you'd use a more flexible resize system.
-    this.$refs['canvas'].width = this.$refs['canvas'].parentElement.clientWidth
-    this.$refs['canvas'].height = this.$refs['canvas'].parentElement.clientHeight
+    this.$refs['canvas'].width = window.innerWidth * scale;
+    this.$refs['canvas'].height = window.innerHeight * scale;
+
+    // window.addEventListener('resize', this.resizeCanvas, false);
+  },
+  methods: {
+    resizeCanvas: function () {
+      let scale = window.devicePixelRatio;
+      this.$refs['canvas'].width = window.innerWidth * scale;
+      this.$refs['canvas'].height = window.innerHeight * scale;
+    }
   }
 };
 </script>
 
 <style>
 canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  border: 2px solid red;
 }
 </style>
 
