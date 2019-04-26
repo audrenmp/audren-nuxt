@@ -48,8 +48,7 @@ div {
 }
 
 canvas {
-  position: absolute;
-  /* border: 2px solid red; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
