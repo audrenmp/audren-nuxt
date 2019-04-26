@@ -1,13 +1,13 @@
 <script>
-import SimplexNoise from 'simplex-noise'
-import TweenMax from 'gsap'
+import SimplexNoise from "simplex-noise";
+import TweenMax from "gsap";
 
 export default {
-  inject: ['provider'],
+  inject: ["provider"],
   props: {
     color: String
   },
-  data () {
+  data() {
     return {
       speed: 0,
       points: [],
@@ -17,59 +17,65 @@ export default {
       ctx: {},
       canvasWidth: 0,
       canvasHeight: 0
-    }
+    };
   },
   watch: {
-    ctx: function (val) {
-
-    },
+    canvasWidth: function(val) {
+      console.log(val);
+      // this.init();
+    }
   },
-  updated () {
+  updated() {
     if (this.provider.context) {
-      this.init()
+      this.init();
     }
   },
   methods: {
-    init: function () {
-      this.simplex = new SimplexNoise(Math.random)
-      this.scale = window.devicePixelRatio;
-
+    init: function() {
+      this.simplex = new SimplexNoise(Math.random);
       this.ctx = this.provider.context;
-      this.canvasWidth = this.ctx.canvas.width;
-      this.canvasHeight = this.ctx.canvas.height;
 
+      this.scale = window.devicePixelRatio;
       this.ctx.scale(this.scale, this.scale);
-      this.ctx.lineWidth = 2 * this.scale;
-      this.ctx.strokeStyle = this.$props.color;
-      this.ctx.fillStyle = 'turquoise';
-      this.draw()
+      this.canvasWidth = this.ctx.canvas.width;
+        this.canvasHeight = this.ctx.canvas.height;
+        this.ctx.lineWidth = 5 * this.scale;
+        this.ctx.strokeStyle = "turquoise";
+        this.ctx.fillStyle = "turquoise";
+      this.draw();
     },
-    draw: function () {
+    draw: function() {
       if (this.provider.context) {
-        // console.log(this.radius)
+        
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.speed += 0.005;
-        this.radius = 200;
+        this.radius = (this.canvasHeight/10) * this.scale;
 
-        this.ctx.moveTo(window.innerWidth / 2, window.innerHeight / 2); // centrer au centre
+        this.ctx.moveTo(window.innerWidth/2 / this.scale, window.innerHeight/2 / this.scale); // centrer au centre
         this.ctx.beginPath();
 
-        for (var i = 0; i < (Math.PI * 2 + 5); i += 0.01) {
-          let value2d = this.simplex.noise2D(Math.cos(i) + this.speed, Math.sin(i) + this.speed) * 20;
-          let x = Math.cos(i) * (this.radius + value2d) + window.innerWidth / 2
-          let y = Math.sin(i) * (this.radius + value2d) + window.innerHeight / 2
+        for (var i = 0; i < Math.PI * 2 + 5; i += 0.01) {
+          let value2d =
+            this.simplex.noise2D(
+              Math.cos(i) + this.speed,
+              Math.sin(i) + this.speed
+            ) * 20;
+          let x = Math.cos(i) * (this.radius + value2d) + (window.innerWidth/2 / this.scale);
+          let y =
+            Math.sin(i) * (this.radius + value2d) + (window.innerHeight/2 / this.scale);
           this.ctx.lineTo(x, y);
         }
-        // this.ctx.stroke();
-        this.ctx.fill();
+
+        this.ctx.stroke();
+        // this.ctx.fill();
       }
       requestAnimationFrame(this.draw);
     }
   },
-  render: function () {
+  render: function() {
     // Since the parent canvas has to mount first, it's *possible* that the context may not be
     // injected by the time this render function runs the first time.
-    if (!this.provider.context) return '';
+    if (!this.provider.context) return "";
     // const ctx = this.provider.context;
 
     // ctx.clearRect(0, 0, 500, 500); // clear the canvas
