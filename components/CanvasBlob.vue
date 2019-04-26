@@ -29,9 +29,9 @@ export default {
   },
   methods: {
     resizeCanvas: function () {
-      let scale = window.devicePixelRatio;
-      this.$refs['canvas'].width = window.innerWidth * scale;
-      this.$refs['canvas'].height = window.innerHeight * scale;
+      // let scale = window.devicePixelRatio;
+      // this.$refs['canvas'].width = window.innerWidth * scale;
+      // this.$refs['canvas'].height = window.innerHeight * scale;
     }
   }
 };
@@ -39,7 +39,7 @@ export default {
 
 <style>
 canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;

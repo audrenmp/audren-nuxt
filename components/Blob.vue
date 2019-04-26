@@ -5,13 +5,14 @@ import TweenMax from 'gsap'
 export default {
   inject: ['provider'],
   props: {
-    color: String
+    color: String,
+    size: Number
   },
   data () {
     return {
       speed: 0,
       points: [],
-      radius: 0,
+      radius: 100,
       scale: 0,
       simplex: {},
       ctx: {},
@@ -40,16 +41,18 @@ export default {
 
       this.ctx.scale(this.scale, this.scale);
       this.ctx.lineWidth = 2 * this.scale;
-      this.ctx.strokeStyle = this.$props.color;
-      this.ctx.fillStyle = 'turquoise';
+      // this.ctx.strokeStyle = this.$props.color;
+      this.ctx.fillStyle = this.$props.color;
       this.draw()
     },
     draw: function () {
       if (this.provider.context) {
-        // console.log(this.radius)
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.speed += 0.005;
-        this.radius = 200;
+
+        if (this.radius < 100 + this.$props.size) {
+          this.radius += 0.2;
+        }
 
         this.ctx.moveTo(window.innerWidth / 2, window.innerHeight / 2); // centrer au centre
         this.ctx.beginPath();
