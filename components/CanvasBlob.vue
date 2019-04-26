@@ -22,16 +22,16 @@ export default {
   mounted () {
     let scale = window.devicePixelRatio;
     this.provider.context = this.$refs['canvas'].getContext('2d');
-    // this.$refs['canvas'].width = window.innerWidth * scale;
-    // this.$refs['canvas'].height = window.innerHeight * scale;
+    this.$refs['canvas'].width = window.innerWidth * scale;
+    this.$refs['canvas'].height = window.innerHeight * scale;
 
     window.addEventListener('resize', this.resizeCanvas, false);
   },
   methods: {
     resizeCanvas: function () {
       let scale = window.devicePixelRatio;
-      // this.$refs['canvas'].width = window.innerWidth * scale;
-      // this.$refs['canvas'].height = window.innerHeight * scale;
+      this.$refs['canvas'].width = window.innerWidth * scale;
+      this.$refs['canvas'].height = window.innerHeight * scale;
     }
   }
 };

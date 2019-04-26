@@ -1,39 +1,52 @@
 module.exports = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: 'audren-nuxt',
+    title: "audren-nuxt",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Audren Mauplot, front-end developer' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: "Audren Mauplot, front-end developer"
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
+   ** Global CSS
+   */
+  css: ["./assets/global.css", "./assets/scss/index.scss"],
+  modules: ["@nuxtjs/style-resources"],
+  styleResources: {
+    scss: ["./assets/scss/index.scss"]
+  },
   /*
-  ** Build configuration
-  */
+   ** Plugins to load before mounting the App
+   */
+  plugins: ["~/plugins/lazyloading.js"],
+  /*
+   ** Customize the progress bar color
+   */
+  loading: { color: "#3B8070" },
+  /*
+   ** Build configuration
+   */
   build: {
     /*
-    ** Run ESLint on save
-    */
-    extend (config, { isDev, isClient }) {
+     ** Run ESLint on save
+     */
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          loader: "eslint-loader",
           exclude: /(node_modules)/
-        })
+        });
       }
     }
   }
-}
-
+};
