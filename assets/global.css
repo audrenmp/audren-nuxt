@@ -1,10 +1,8 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 body {
-  color: white;
   height: 100%;
   width: 100%;
-  background: #262626;
   position: relative;
   margin: 0 auto;
   font-size: 1.1em;

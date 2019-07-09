@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "gsap": "^2.1.2",
+    "ks-vue-scrollmagic": "^1.0.2",
     "nuxt": "^2.0.0",
     "scrollmagic": "^2.0.6",
-    "simplex-noise": "^2.4.0"
+    "simplex-noise": "^2.4.0",
+    "vue-scrollmagic": "^1.1.0"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^0.1.2",

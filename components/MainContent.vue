@@ -26,14 +26,34 @@
         embody a <strong>technician</strong> who has to repair this broken factory.
       </p>
     </article>
+    <article>
+      <p>
+        Before I worked on
+        <span class="main">FLIRT FACTORY</span>
+        an interactive experience on desktop where the user is invited to explore
+        the <strong>history of seduction through the ages</strong>. During the experience, the user
+        embody a <strong>technician</strong> who has to repair this broken factory.
+      </p>
+    </article>
   </section>
 </template>
 
 <script>
+// import ScrollMagic from '~/plugins/vue-scrollmagic'
+
 export default {
   data () {
     return {
     }
+  },
+  mounted () {
+//     if (process.client) {
+//   require('external_library')
+// }
+    // let controller = new ScrollMagic.Controller();
+    // const scene = new vm.$scrollmagic.Scene() // Works in every components
+
+
   },
   methods: {
   }

@@ -3727,10 +3727,20 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
 
+gsap@^1.20.2:
+  version "1.20.6"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-1.20.6.tgz#0f6829052e94fbfffa92be3265f24b88729c9d1d"
+  integrity sha512-XM2BdaoJP23KSg/u4FnsqVI+HI7/jcVZbHFU8JfzNLvPCF08yf4a/WRFP/lQ5gbWydpL7g/YKjPe/PMpw+5WJQ==
+
 gsap@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-2.1.2.tgz#2ad017608f883379e546d8bcc3046182083d4da2"
   integrity sha512-7saMzK2HQ3OD4/hbygtkh0uAK8LUqcom6abL4YqGttyxAQdEvywQOw5VK3obKQ7GaLU8KhszArKJPxIKe8mbvg==
+
+gsap@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-2.1.3.tgz#c63ee3a50f0b7dc3b46ed0845bb0f09049feb944"
+  integrity sha512-8RFASCqi2FOCBuv7X4o7M6bLdy+1hbR0azg+MG7zz+EVsI+OmJblYsTk0GEepQd2Jg/ItMPiVTibF7r3EVxjZQ==
 
 gzip-size@^5.0.0:
   version "5.1.0"
@@ -4559,6 +4569,14 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+
+ks-vue-scrollmagic@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ks-vue-scrollmagic/-/ks-vue-scrollmagic-1.0.2.tgz#05fc848b2bb1b6922fc1e5cf403cf303acd3c5d2"
+  integrity sha1-BfyEiyuxtpIvweXPQDzzA6zTxdI=
+  dependencies:
+    gsap "^1.20.2"
+    scrollmagic "^2.0.5"
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -7014,6 +7032,16 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
+scrollmagic@^2.0.5:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/scrollmagic/-/scrollmagic-2.0.7.tgz#4139216f3849d226e38b3ef1e5dbbacf25190b35"
+  integrity sha512-Qu23XB3YTBhqbnTIkyVhVAEP/7r2APvW+QFfxCpd6LvJ5byCnlvSMzSeBdpyKbDKXBxVWGE9XFXUTvue3B7VrQ==
+
+scrollmagic@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/scrollmagic/-/scrollmagic-2.0.6.tgz#518bdf85a1755af819fe109ee8517b8e798c4e9a"
+  integrity sha512-uH4Z/NggT50MD3iOTOa6/B9n9+WkMpKGrVj3NuRRg2WoKaaZXCXx8EgKJBmH3SzRKHYHbZ3NJDPQ2AOhXlsTuw==
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
@@ -8117,6 +8145,15 @@ vue-router@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
   integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
+
+vue-scrollmagic@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vue-scrollmagic/-/vue-scrollmagic-1.1.1.tgz#f3e131e50ea6d933d5f800dccd2e26866d3d0e2f"
+  integrity sha512-BN9CCioi51yGhGFrprp/BHXeGwWLeSYWy0Y64v+JgWaC2lenaUE0oqX7wdI/mjdVLEbDAEnfXVLSOXb8ZJHfFw==
+  dependencies:
+    gsap "^2.1.3"
+    scrollmagic "^2.0.6"
+    vue "^2.6.10"
 
 vue-server-renderer@^2.6.10:
   version "2.6.10"

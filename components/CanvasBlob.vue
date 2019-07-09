@@ -24,7 +24,7 @@ export default {
     this.provider.context = this.$refs["canvas"].getContext("2d");
     this.$refs["canvas"].width = window.innerWidth * scale;
     this.$refs["canvas"].height = window.innerHeight * scale;
-    console.log(this.provider.context.canvas)
+    console.log(this.provider.context.canvas);
     this.provider.context.scale(scale, scale);
 
     window.addEventListener("resize", this.resizeCanvas, false);
@@ -34,7 +34,6 @@ export default {
       // let scale = window.devicePixelRatio;
       // this.$refs["canvas"].width = window.innerWidth * scale;
       // this.$refs["canvas"].height = window.innerHeight * scale;
-      
       // scale = window.devicePixelRatio;
       // this.$refs["canvas"].scale(this.scale, this.scale);
     }
@@ -44,13 +43,13 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  z-index: 1;
+  z-index: -1;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
 }

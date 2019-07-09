@@ -13,7 +13,13 @@ module.exports = {
         content: "Audren Mauplot, front-end developer"
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"
+      }
+    ]
   },
   /*
    ** Global CSS
@@ -26,7 +32,13 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/lazyloading.js"],
+  plugins: [
+    "~/plugins/lazyloading.js",
+    {
+      src: '~/plugins/vue-scrollmagic.js',
+      ssr: false
+    },
+  ],
   /*
    ** Customize the progress bar color
    */

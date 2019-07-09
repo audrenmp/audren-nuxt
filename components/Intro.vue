@@ -30,6 +30,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
   div {
     h1 {
       font-family: Libre Baskerville;
