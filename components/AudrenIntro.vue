@@ -1,21 +1,34 @@
 <template>
-  <header>
+  <header ref="container">
     <canvas ref="canvas" />
     <div class="cut-background">
-      <svg viewBox="0 0 100 60">
+      <svg viewBox="0 0 100 60" width="100%" height="100%" 
+          preserveAspectRatio="none">
         <defs>
           <g id="text">
-            <text text-anchor="middle" x="50" y="18" dy="1" stroke-width="0.05" stroke="black" >
-              BLA BLA
-              BLA BLA
+            <text text-anchor="start" stroke-width="0.12" stroke="#E1E1E1">
+              <tspan alignment-baseline="after-edge" x="0" y="10">Hi ! My name is</tspan>
+              <tspan alignment-baseline="after-edge" x="0" y="20">Audren Mauplot,</tspan>
+              <tspan alignment-baseline="after-edge" x="0" y="30">I’m a French</tspan>
+              <tspan alignment-baseline="after-edge" x="0" y="40">front-end developer</tspan>
+              <tspan alignment-baseline="after-edge" x="0" y="50">& interactive</tspan>
+              <tspan alignment-baseline="after-edge" x="0" y="60">storyteller. 🚀</tspan>
             </text>
           </g>
-          <mask id="mask" x="0" y="0" width="100" height="50">
-            <rect x="0" y="0" width="100" height="40" fill="white" />
+          <mask id="mask">
+            <rect width="100vw" height="100%" fill="white"/>
             <use xlink:href="#text" />
           </mask>
         </defs>
-        <rect x="5" y="5" width="90" height="30" mask="url(#mask)" fill-opacity="1" fill="white" />
+        <rect
+          x="0"
+          y="0"
+          width="100"
+          height="100"
+          mask="url(#mask)"
+          fill-opacity="1"
+          fill="white"
+        />
         <use xlink:href="#text" fill="transparent" />
       </svg>
     </div>
@@ -35,6 +48,8 @@ export default {
     return {
       context: null,
       canvas: null,
+      container: null,
+      margin: 0,
       mouseX: 0,
       mouseY: 0,
       paint: false,
@@ -48,33 +63,42 @@ export default {
   },
   methods: {
     initCanvas() {
-      let scale = window.devicePixelRatio;
+      let dpi = window.devicePixelRatio;
       this.canvas = this.$refs["canvas"];
+      this.container = this.$refs["container"];
       this.listener = this.$refs["listener"];
       this.context = this.canvas.getContext("2d");
-      // this.context.translate(0.5, 0.5);
-      this.canvas.width = window.innerWidth * scale;
-      this.canvas.height = window.innerHeight * scale;
+      this.context.translate(0.5, 0.5);
+      this.canvas.width = this.container.clientWidth;
+      this.canvas.height = this.container.clientHeight;
       // this.context.rect(20, 20, 500, 500);
       // this.context.fillStyle="blue";
       // this.context.fill();
-      // this.context.scale(scale, scale);
+      // this.context.scale(dpi, dpi);
       this.addListeners();
     },
     addListeners() {
-      // window.addEventListener("resize", this.resizeCanvas, false);
+      window.addEventListener("resize", this.resizeCanvas, false);
       this.listener.addEventListener("mouseenter", this.startDrawing);
       this.listener.addEventListener("mouseleave", this.stopDrawing);
       this.listener.addEventListener("mouseleave", this.stopDrawing);
       this.listener.addEventListener("mousemove", this.draw);
     },
+    resizeCanvas() {
+      this.canvas.width = this.container.clientWidth;
+      this.canvas.height = this.container.clientHeight;
+      this.clickX = [];
+      this.clickY = [];
+      this.clickDrag = [];
+      this.redraw();
+    },
     startDrawing(e) {
-      this.mouseX = e.pageX - this.canvas.offsetLeft;
-      this.mouseY = e.pageY - this.canvas.offsetTop;
+      this.mouseX = e.layerX - this.canvas.offsetLeft;
+      this.mouseY = e.layerY - this.canvas.offsetTop;
       this.paint = true;
       this.addClick(
-        e.pageX - this.canvas.offsetLeft,
-        e.pageY - this.canvas.offsetTop,
+        e.layerX - this.canvas.offsetLeft,
+        e.layerY - this.canvas.offsetTop,
         true
       );
       this.redraw();
@@ -85,8 +109,8 @@ export default {
     draw(e) {
       if (this.paint) {
         this.addClick(
-          e.pageX - this.canvas.offsetLeft,
-          e.pageY - this.canvas.offsetTop,
+          e.layerX - this.canvas.offsetLeft,
+          e.layerY - this.canvas.offsetTop,
           true
         );
         this.redraw();
@@ -103,7 +127,7 @@ export default {
         0,
         this.context.canvas.width,
         this.context.canvas.height
-      ); // Clears the canvas
+      );
       this.context.strokeStyle = "black";
       this.context.lineJoin = "round";
       this.context.lineWidth = 30;
@@ -126,11 +150,11 @@ export default {
 
 <style scoped lang="scss">
 header {
+  border: 2px solid palevioletred;
   margin: 0 auto;
-  height: 100vh;
-  width: 100vw;
+  height: 70vh;
+  width: 100%;
   position: relative;
-  /* background: orange; */
 
   .listener {
     height: 100%;
@@ -145,7 +169,7 @@ header {
   }
   .cut-background {
     /* display: none; */
-    /* z-index: 0; */
+    box-sizing: border-box;
     position: absolute;
     left: 0;
     top: 0;
@@ -154,6 +178,20 @@ header {
     margin: 0 auto;
     font-size: 10px;
     text-align: center;
+
+    svg {
+      /* height: 100%; */
+      /* width: 100%; */
+      text {
+        width: 100%;
+        font-family: Impact;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 0.1em;
+        line-height: 2em;
+        font-weight: 200;
+      }
+    }
 
     /* &:before {
       display: none;
@@ -164,8 +202,6 @@ header {
       width: 100%;
       left: 0;
       position: fixed;
-      text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
-
       color: #222;
       background-color: white;
       padding: 1rem;
@@ -192,7 +228,7 @@ header {
       line-height: 2em;
       font-weight: 100;
     } */
-}
+  }
 }
 </style>
 

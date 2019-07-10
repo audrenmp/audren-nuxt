@@ -1,5 +1,5 @@
 <template>
-  <div class="audren-container">
+  <div class="audren-intro">
     <audren-intro />
   </div>
 </template>
@@ -21,9 +21,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.audren-intro {
+  padding: 0 5vw;
+}
+
 .audren-container {
-  border: 2px solid pink;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
 }
 </style>
 
