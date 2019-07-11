@@ -2,8 +2,7 @@
   <header ref="container">
     <canvas ref="canvas" />
     <div class="cut-background">
-      <svg viewBox="0 0 100 60" width="100%" height="100%" 
-          preserveAspectRatio="none">
+      <svg viewBox="0 0 100 60" width="100%" height="100%" preserveAspectRatio="none">
         <defs>
           <g id="text">
             <text text-anchor="start" stroke-width="0.12" stroke="#E1E1E1">
@@ -16,29 +15,16 @@
             </text>
           </g>
           <mask id="mask">
-            <rect width="100vw" height="100%" fill="white"/>
+            <rect width="100vw" height="100%" fill="white" />
             <use xlink:href="#text" />
           </mask>
         </defs>
-        <rect
-          x="0"
-          y="0"
-          width="100"
-          height="100"
-          mask="url(#mask)"
-          fill-opacity="1"
-          fill="white"
-        />
+        <rect x="0" y="0" width="100" height="100" mask="url(#mask)" fill-opacity="1" fill="white" />
         <use xlink:href="#text" fill="transparent" />
       </svg>
     </div>
     <div ref="listener" class="listener" />
-    <!-- <h1>
-        Hi ! My name is Audren Mauplot, <br>
-        I’m a French front-end developer <br>
-        <i>&</i> interactive storyteller. 🚀
-      </h1>
-    <h2>I wish to create meaningful digital projects.</h2>-->
+    <h2>I wish to create meaningful digital projects.</h2>
   </header>
 </template>
 
@@ -192,42 +178,18 @@ header {
         font-weight: 200;
       }
     }
-
-    /* &:before {
-      display: none;
-      content: "Hi ! My name is Audren Mauplot, 
-        I’m a French front-end developer 
-        & interactive storyteller. 🚀";
-      height: 100%;
-      width: 100%;
-      left: 0;
-      position: fixed;
-      color: #222;
-      background-color: white;
-      padding: 1rem;
-      color: transparent;
-      z-index: 1;
-      mix-blend-mode: screen;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1rem;
-      font-family: Arial;
-      font-size: 1em;
-      line-height: 1.8em;
-      font-weight: 200;
-    } */
     /* h1 {
       font-family: Libre Baskerville;
       font-size: 2.2em;
       line-height: 1.8em;
       font-weight: 200;
-    }
-    h2 {
-      font-family: Libre Baskerville;
-      font-size: 1.2em;
-      line-height: 2em;
-      font-weight: 100;
     } */
+  }
+  h2 {
+    font-family: Libre Baskerville;
+    font-size: 1.2em;
+    line-height: 2em;
+    font-weight: 100;
   }
 }
 </style>
